@@ -9,9 +9,10 @@ set list listchars=tab:\|\
 set title
 set laststatus=2
 set hlsearch
+set backspace=indent,eol,start
 
-colorscheme darkblue
 syntax on
+colorscheme darkblue
 
 " window move command
 noremap sw <C-w>w
