@@ -5,19 +5,26 @@ set autoindent
 set shiftwidth=4
 set tabstop=4
 " set expandtab
-set list listchars=tab:\|\ 
+" set list listchars=tab:\|\ 
 set title
 set laststatus=2
 set hlsearch
 set backspace=indent,eol,start
 
 syntax on
-colorscheme darkblue
+colorscheme molokai
 
 " window move command
 noremap sw <C-w>w
 " esc key bind
 imap <c-j> <esc>
+vmap <c-j> <esc>
+
+" paste mode toggle
+set pastetoggle=<F2>
+
+" set leader key bind
+let mapleader = "\<Space>"
 
 
 "dein Scripts-----------------------------
@@ -44,6 +51,8 @@ call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('fatih/vim-go')
+call dein#add('tomasr/molokai')
+call dein#add('nathanaelkane/vim-indent-guides')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -207,3 +216,14 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+" vim-indent-guides
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=237
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=0
