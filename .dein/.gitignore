@@ -1,2 +1,3 @@
-doc/tags*
-*.pyc
+doc/tags
+.cache
+.cache2

@@ -1,5 +1,3 @@
-**Warning:  I will close the issue without the minimal init.vim and the reproduce ways.**
-
 # Problems summary
 
 
@@ -15,9 +13,7 @@
 
 ```vim
 " Your minimal .vimrc
-set runtimepath^=~/path/to/dein.nvim/
-call dein#begin(path)
-call dein#end()
+set runtimepath+=~/path/to/unite.nvim/
 ```
 
 
