@@ -49,13 +49,11 @@ call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler.vim')
+call dein#add('Shougo/vimshell.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('fatih/vim-go')
 call dein#add('tomasr/molokai')
 call dein#add('nathanaelkane/vim-indent-guides')
-
-" You can specify revision/branch/tag.
-call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
 " Required:
 call dein#end()

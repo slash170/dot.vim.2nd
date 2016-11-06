@@ -16,6 +16,7 @@ Interface		|dein-interface|
   Options		  |dein-options|
   Toml			  |dein-toml|
 Unite Sources		|dein-unite-sources|
+Denite Sources		|dein-denite-sources|
 Configuration Examples	|dein-examples|
 FAQ			|dein-faq|
 Compatibility		|dein-compatibility|
@@ -202,6 +203,11 @@ dein#each({command}[, {plugins}])
 		{plugins} is the plugins name list.
 		You can execute "git gc" command for the plugins.
 
+							*dein#build()*
+dein#build([{plugins}])
+		Build for {plugins}.
+		{plugins} is the plugins name list.
+
 							*dein#rollback()*
 dein#rollback({date}[, {plugins}])
 		Rollback to the latest matched {date} revisions for {plugins}.
@@ -251,23 +257,12 @@ dein#get([{plugin-name}])
 		dictionary.  The key is the plugin name.  The value is the
 		plugin dictionary.
 
-							*dein#load_cache()*
-dein#load_cache([{vimrcs}])
-		It is the deprecated function.
-		Please use |dein#load_state()| instead.
-
-							*dein#save_cache()*
-dein#save_cache()
-		It is the deprecated function.
-		Please use |dein#save_state()| instead.
-
 							*dein#load_state()*
 dein#load_state({base-path})
 		Load dein's state from the cache script,
 		which is located in `dein#util#_get_runtime_path() . '/state_'
 		.  fnamemodify(v:progname, ':r') . '.vim'`.
 		{base-path} is where your downloaded plugins will be placed.
-		It is faster than |dein#load_cache()| feature.
 		Note: You must call it before |dein#begin()|.  It clears dein
 		all configuration.
 		Note: It overwrites your 'runtimepath' completely, you must
@@ -398,6 +393,7 @@ https://www.tlhan-ghun.de/projects/snarl-command-line-tools/snarl_cmd-exe/
 
 		In Mac: "terminal-notifier" or "osascript" command
 https://github.com/julienXX/terminal-notifier
+		Note: "reattach-to-user-namespace" command is needed in tmux.
 
 		In Linux: "notify-send" command
 
@@ -901,6 +897,15 @@ dein/log
 		1. "!"
 
 ==============================================================================
+DENITE SOURCES						*dein-denite-sources*
+
+Here let me explain about a source for |denite| provided in dein.
+
+						*dein-denite-source-dein*
+dein
+		Nominates dein plugins as candidates.
+
+==============================================================================
 EXAMPLES						*dein-examples*
 >
 	if &compatible
@@ -1037,6 +1042,19 @@ Q: I need the wrapper commands for dein.vim.
 
 A: You can use it.
 https://github.com/haya14busa/dein-command.vim
+
+Q: Why the install script does not use "curl | bash" ?
+https://github.com/Shougo/neobundle.vim/pull/515
+
+A: https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/
+
+Q: I want to use "git" or "http" protocol instead of "https".
+
+A: No, you cannot.
+
+Q: Why dein.vim only accepts "https" or "ssh"?
+
+A: https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 
 ==============================================================================
 COMPATIBILITY						*dein-compatibility*

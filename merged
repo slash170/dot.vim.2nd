@@ -1,1 +1,1 @@
-['dein.vim', 'lightline.vim', 'molokai', 'neocomplete.vim', 'neomru.vim', 'neosnippet-snippets', 'neosnippet.vim', 'unite.vim', 'vim-go', 'vim-indent-guides', 'vimfiler.vim', 'vimshell']
+['dein.vim', 'lightline.vim', 'molokai', 'neocomplete.vim', 'neomru.vim', 'neosnippet-snippets', 'neosnippet.vim', 'unite.vim', 'vim-go', 'vim-indent-guides', 'vimfiler.vim', 'vimshell', 'vimshell.vim']

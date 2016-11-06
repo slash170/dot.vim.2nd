@@ -1,28 +1,31 @@
-### Actual behavior
+# Problems summary
 
-Write here what's happening ...
 
-### Expected behavior
+## Expected
 
-Write here what you're expecting ...
 
-### Steps to reproduce:
+## Environment Information
+ * OS:
+ * Vim version:
 
-Please create a reproducible case of your problem. Re produce it 
-with a minimal `vimrc` with all plugins disabled and only `vim-go`
-enabled:
 
-1.
-2.
-3.
+## Provide a minimal .vimrc with less than 50 lines (Required!)
 
-### Configuration
+```vim
+" Your minimal .vimrc
+set runtimepath+=~/path/to/neocomplete.nvim/
+let g:neocomplete#enable_at_startup = 1
+```
 
-Add here your current configuration and additional information that might be
-useful, such as:
 
-* `vimrc` you used to reproduce
-* vim version:
-* vim-go version
-* go version
+## The reproduce ways from Vim starting (Required!)
 
+ 1. foo
+ 2. bar
+ 3. baz
+
+
+## Screen shot (if possible)
+
+
+## Upload the log messages by `:redir` and `:message`
