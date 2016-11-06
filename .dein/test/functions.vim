@@ -1,137 +1,38 @@
-let s:suite = themis#suite('toml')
+let s:suite = themis#suite('parser')
 let s:assert = themis#helper('assert')
 
-function! s:suite.get_in_paren() abort
-  call s:assert.equals(neosnippet#parser#_get_in_paren(
-        \ '(', ')',
-        \ '(foobar)'),
-        \ 'foobar')
-  call s:assert.equals(neosnippet#parser#_get_in_paren(
-        \ '(', ')',
-        \ '(foobar, baz)'),
-        \ 'foobar, baz')
-  call s:assert.equals(neosnippet#parser#_get_in_paren(
-        \ '(', ')',
-        \ '(foobar, (baz))'),
-        \ 'foobar, (baz)')
-  call s:assert.equals(neosnippet#parser#_get_in_paren(
-        \ '(', ')',
-        \ 'foobar('),
-        \ '')
-  call s:assert.equals(neosnippet#parser#_get_in_paren(
-        \ '(', ')',
-        \ 'foobar()'),
-        \ '')
-  call s:assert.equals(neosnippet#parser#_get_in_paren(
-        \ '(', ')',
-        \ 'foobar(fname)'),
-        \ 'fname')
-  call s:assert.equals(neosnippet#parser#_get_in_paren(
-        \ '(', ')',
-        \ 'wait()    wait(long, int)'),
-        \ 'long, int')
+function! s:suite.sort() abort
+  let candidates = []
+  for i in range(1, 100)
+    call add(candidates, { 'vimfiler__filename' : 'foo'.i.'.txt'.i })
+  endfor
+
+  " Benchmark.
+  let start = reltime()
+  call vimfiler#helper#_sort_human(copy(candidates), 0)
+  echomsg reltimestr(reltime(start))
+  let g:start = reltime()
+  call vimfiler#helper#_sort_human(copy(candidates), 1)
+  echomsg reltimestr(reltime(start))
+
+  call s:assert.equals(vimfiler#helper#_sort_human(copy(candidates), 0),
+        \ vimfiler#helper#_sort_human(copy(candidates), 1))
+
+  let candidates = []
+  call add(candidates, { 'vimfiler__filename' : 'foo1.txt' })
+  call add(candidates, { 'vimfiler__filename' : 'foo10.txt' })
+  call add(candidates, { 'vimfiler__filename' : 'foo2.txt' })
+
+  call s:assert.equals(vimfiler#helper#_sort_human(copy(candidates), 0), [
+        \ { 'vimfiler__filename' : 'foo1.txt' },
+        \ { 'vimfiler__filename' : 'foo2.txt' },
+        \ { 'vimfiler__filename' : 'foo10.txt' }
+        \ ])
+  call s:assert.equals(vimfiler#helper#_sort_human(copy(candidates), 1), [
+        \ { 'vimfiler__filename' : 'foo1.txt' },
+        \ { 'vimfiler__filename' : 'foo2.txt' },
+        \ { 'vimfiler__filename' : 'foo10.txt' }
+        \ ])
 endfunction
 
-function! s:suite.get_completed_snippet() abort
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : 'foo()',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), ')${1}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : '',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : 'foo(hoge)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:hoge})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo', 'abbr' : 'foo(hoge)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '(${1:#:hoge})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : 'foo(hoge, piyo)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:hoge}, ${2:#:piyo})${3}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : 'foo(hoge, piyo(foobar))',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:hoge}, ${2:#:piyo()})${3}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : 'foo(hoge[, abc])',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:hoge[, abc]})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : 'foo(...)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:...})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo(', 'abbr' : 'foo(hoge, ...)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:hoge}${2:#:, ...})${3}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo{', 'abbr' : 'foo{',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1}}${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'foo{', 'abbr' : 'foo{piyo}',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:piyo}}${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'Dictionary', 'abbr' : 'Dictionary<Key, Value>(foo)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '<${1:#:Key}, ${2:#:Value}>(${3:#:foo})${4}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'Dictionary(',
-        \ 'abbr' : 'Dictionary<Key, Value> Dictionary(foo)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1:#:foo})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'Dictionary(', 'abbr' : '',
-        \ 'menu' : '', 'info' : ''
-        \ }, '('), '')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'Dictionary(', 'abbr' : 'Dictionary(foo)',
-        \ 'menu' : '', 'info' : ''
-        \ }, '('), '')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'Dictionary(', 'abbr' : 'Dictionary(foo)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ')'), '${1:#:foo})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'Dictionary', 'abbr' : 'Dictionary(foo)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '(${1:#:foo})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'forEach', 'abbr' : 'forEach(BiConsumer<Object, Object>)',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '(${1:#:BiConsumer<>})${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'for[', 'abbr' : '',
-        \ 'menu' : '', 'info' : ''
-        \ }, ''), '${1}]${2}')
-
-  call s:assert.equals(neosnippet#parser#_get_completed_snippet({
-        \ 'word' : 'something', 'abbr' : 'something(else)',
-        \ 'menu' : '', 'info' : '', 'snippet' : '(${1:custom})${2}'
-        \ }, ''), '(${1:custom})${2}')
-endfunction
-
+" vim:foldmethod=marker:fen:

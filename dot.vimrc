@@ -47,9 +47,11 @@ call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/vimshell.vim')
+call dein#add('Shougo/vimproc.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('fatih/vim-go')
 call dein#add('tomasr/molokai')
@@ -97,6 +99,14 @@ au FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   " Overwrite settings.
 endfunction
+
+"" unite-grep
+" unite-grepのバックエンドをagに切り替える
+" http://qiita.com/items/c8962f9325a5433dc50d
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
 
 
 "" neocomplete settings
