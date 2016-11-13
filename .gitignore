@@ -1,2 +1,6 @@
 /rollbacks/*
 /temp/*
+/.dein/*
+/repos/*
+merged
+installer.sh
