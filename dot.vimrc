@@ -33,10 +33,13 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/yutaka/.vim//repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('/Users/yutaka/.vim/')
+if has('mac')
+  set runtimepath+=/Users/yutaka/.vim/repos/github.com/Shougo/dein.vim
+  call dein#begin('/Users/yutaka/.vim/')
+elseif has('unix')
+  set runtimepath+=/home/ubuntu/.vim/repos/github.com/Shougo/dein.vim
+  call dein#begin('/home/ubuntu/.vim/')
+endif
 
 " Let dein manage dein
 " Required:
