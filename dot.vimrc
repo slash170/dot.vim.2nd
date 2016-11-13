@@ -57,8 +57,12 @@ call dein#add('Shougo/vimshell.vim')
 call dein#add('Shougo/vimproc.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('fatih/vim-go')
-call dein#add('tomasr/molokai')
+call dein#add('vim-syntastic/syntastic')
 call dein#add('nathanaelkane/vim-indent-guides')
+call dein#add('tyru/caw.vim')
+call dein#add('tomasr/molokai')
+call dein#add('thinca/vim-quickrun')
+call dein#add('dhruvasagar/vim-table-mode')
 
 " Required:
 call dein#end()
@@ -88,6 +92,12 @@ noremap <C-P> :<C-u>Unite buffer<CR>
 noremap <C-N> :<C-u>Unite -buffer-name=file file<CR>
 " 最近使ったファイルの一覧
 noremap <C-A> :<C-u>Unite file_mru<CR>
+" カレントディレクトリ配下のファイルの一覧
+noremap <C-l> :<C-u>Unite file_rec/async:!<CR>
+" カレントディレクトリ配下のファイルに対して grep
+noremap <C-g> :<C-u>Unite grep<CR>
+" outline 表示
+noremap <C-f> :<C-u>Unite outline<CR>
 " ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
@@ -230,7 +240,10 @@ let g:go_fmt_command = "goimports"
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+"" caw
+nmap <Leader>c <Plug>(caw:hatpos:toggle)
+vmap <Leader>c <Plug>(caw:hatpos:toggle)
 
 " vim-indent-guides
 let g:indent_guides_auto_colors=0
@@ -238,3 +251,14 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=237
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=0
+
+"" quickrun
+let g:quickrun_config={
+			\ '*': {'outputter/buffer/split': '10',
+			\       'hook/time/enable': '1'}
+			\ }
+set splitbelow
+
+"" table mode
+let g:table_mode_corner_corner="+"
+let g:table_mode_header_fillchar="="
