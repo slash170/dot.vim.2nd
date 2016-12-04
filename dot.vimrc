@@ -37,8 +37,8 @@ if has('mac')
   set runtimepath+=/Users/yutaka/.vim/repos/github.com/Shougo/dein.vim
   call dein#begin('/Users/yutaka/.vim/')
 elseif has('unix')
-  set runtimepath+=/home/ubuntu/.vim/repos/github.com/Shougo/dein.vim
-  call dein#begin('/home/ubuntu/.vim/')
+  set runtimepath+=/home/vagrant/.vim/repos/github.com/Shougo/dein.vim
+  call dein#begin('/home/vagrant/.vim/')
 endif
 
 " Let dein manage dein
