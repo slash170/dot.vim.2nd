@@ -4,7 +4,7 @@ set showmatch
 set autoindent
 set shiftwidth=4
 set tabstop=4
-" set expandtab
+set expandtab
 " set list listchars=tab:\|\ 
 set title
 set laststatus=2
@@ -29,16 +29,16 @@ let mapleader = "\<Space>"
 
 "dein Scripts-----------------------------
 if &compatible
-  set nocompatible               " Be iMproved
+    set nocompatible               " Be iMproved
 endif
 
 " Required:
 if has('mac')
-  set runtimepath+=/Users/yutaka/.vim/repos/github.com/Shougo/dein.vim
-  call dein#begin('/Users/yutaka/.vim/')
+    set runtimepath+=/Users/yutaka/.vim/repos/github.com/Shougo/dein.vim
+    call dein#begin('/Users/yutaka/.vim/')
 elseif has('unix')
-  set runtimepath+=/home/vagrant/.vim/repos/github.com/Shougo/dein.vim
-  call dein#begin('/home/vagrant/.vim/')
+    set runtimepath+=/home/vagrant/.vim/repos/github.com/Shougo/dein.vim
+    call dein#begin('/home/vagrant/.vim/')
 endif
 
 " Let dein manage dein
@@ -72,7 +72,7 @@ filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+    call dein#install()
 endif
 
 "End dein Scripts-------------------------
@@ -185,7 +185,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+    let g:neocomplete#sources#omni#input_patterns = {}
 endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
@@ -212,16 +212,16 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+    set conceallevel=2 concealcursor=niv
 endif
 
 " lightline settings
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+    \ 'colorscheme': 'wombat',
+    \ }
 
 if !has('gui_running')
-  set t_Co=256
+    set t_Co=256
 endif
 
 augroup reload_vimrc
@@ -250,13 +250,13 @@ let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=237
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
 let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=0
+let g:indent_guides_guide_size=1
 
 "" quickrun
 let g:quickrun_config={
-			\ '*': {'outputter/buffer/split': '10',
-			\       'hook/time/enable': '1'}
-			\ }
+    \ '*': {'outputter/buffer/split': '10',
+    \       'hook/time/enable': '1'}
+    \ }
 set splitbelow
 
 "" table mode
