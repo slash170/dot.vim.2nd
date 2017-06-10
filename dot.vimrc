@@ -5,14 +5,14 @@ set autoindent
 set shiftwidth=4
 set tabstop=4
 set expandtab
-" set list listchars=tab:\|\ 
 set title
 set laststatus=2
-set hlsearch
+set hlsearch incsearch
 set backspace=indent,eol,start
 
 syntax on
 colorscheme molokai
+highlight search cterm=NONE ctermfg=grey ctermbg=blue
 
 " window move command
 noremap sw <C-w>w
