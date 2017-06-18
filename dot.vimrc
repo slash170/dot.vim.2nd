@@ -306,3 +306,11 @@ set splitbelow
 "" table mode
 let g:table_mode_corner_corner="+"
 let g:table_mode_header_fillchar="="
+
+
+"" global settings
+"map <Leader><C-g> :Gtags
+map <Leader><C-h> :Gtags -f %<CR>
+map <Leader><C-j> :GtagsCursor<CR>
+map <C-m> :cn<CR>
+map <C-b> :cp<CR>
