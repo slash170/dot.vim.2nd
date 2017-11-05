@@ -50,6 +50,7 @@ call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler.vim')
@@ -83,44 +84,42 @@ endif
 noremap <C-e> :<C-u>VimFilerExplorer<CR>
 inoremap <C-e> <ESC>:<C-u>VimFilerExplorer<CR>
 
-"" unite settings
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
+
+"" denite settings
+" Change mappings.
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-j>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-k>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
+
+" Ag command on grep source
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts',
+		\ ['-i', '--nocolor', '--nogroup'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
 " バッファ一覧
-noremap <C-P> :<C-u>Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :<C-u>Unite -buffer-name=file file<CR>
+noremap <C-p> :<C-u>Denite buffer<CR>
 " 最近使ったファイルの一覧
-noremap <C-A> :<C-u>Unite file_mru<CR>
+noremap <Leader><C-a> :<C-u>Denite file_mru<CR>
 " カレントディレクトリ配下のファイルの一覧
-noremap <C-l> :<C-u>Unite file_rec/async:!<CR>
-" カレントディレクトリ配下のファイルに対して grep
-noremap <C-g> :<C-u>Unite grep<CR>
-" outline 表示
-noremap <C-f> :<C-u>Unite outline<CR>
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-" 初期設定関数を起動する
-au FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-  " Overwrite settings.
-endfunction
-
-"" unite-grep
-" unite-grepのバックエンドをagに切り替える
-" http://qiita.com/items/c8962f9325a5433dc50d
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-let g:unite_source_grep_recursive_opt = ''
-let g:unite_source_grep_max_candidates = 200
-
+noremap <Leader><C-l> :<C-u>Denite file_rec<CR>
+" カレントディレクトリ配下のファイルに対して grep(ag)
+noremap <Leader><C-g> :<C-u>Denite grep    -buffer-name=search-buffer-denite<CR>
+noremap <Leader><C-r> :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
+" function outline 表示
+noremap <C-f> :<C-u>Denite unite:outline<CR>
 
 "" neocomplete settings
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
