@@ -9,19 +9,21 @@ set title
 set laststatus=2
 set hlsearch incsearch
 set backspace=indent,eol,start
+set cursorline
+set cursorcolumn
 
 syntax on
 colorscheme molokai
 highlight search cterm=NONE ctermfg=grey ctermbg=blue
 
-" window move command
-noremap sw <C-w>w
 " esc key bind
 imap <c-j> <esc>
 vmap <c-j> <esc>
 
 " paste mode toggle
 set pastetoggle=<F2>
+" Turn off paste mode when leaving insert
+autocmd InsertLeave * set nopaste
 
 " set leader key bind
 let mapleader = "\<Space>"
@@ -64,6 +66,7 @@ call dein#add('tyru/caw.vim')
 call dein#add('tomasr/molokai')
 call dein#add('thinca/vim-quickrun')
 call dein#add('dhruvasagar/vim-table-mode')
+call dein#add('simeji/winresizer')
 
 " Required:
 call dein#end()
@@ -202,16 +205,13 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
     set conceallevel=2 concealcursor=niv
+    autocmd FileType json setl conceallevel=0 
 endif
 
 " lightline settings
@@ -269,7 +269,7 @@ endif
 
 augroup reload_vimrc
     autocmd!
-    autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
+    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
 "vim-go setteings
@@ -308,8 +308,12 @@ let g:table_mode_header_fillchar="="
 
 
 "" global settings
-"map <Leader><C-g> :Gtags
-map <Leader><C-h> :Gtags -f %<CR>
-map <Leader><C-j> :GtagsCursor<CR>
-map <C-m> :cn<CR>
-map <C-b> :cp<CR>
+" map <Leader><C-g> :Gtags
+" map <Leader><C-h> :Gtags -f %<CR>
+" map <Leader><C-j> :GtagsCursor<CR>
+" map <C-m> :cn<CR>
+" map <C-b> :cp<CR>
+
+
+"" winresizer settings
+let g:winresizer_start_key = '<Leader><C-E>'
