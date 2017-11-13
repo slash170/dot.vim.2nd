@@ -72,6 +72,7 @@ call dein#add('tomasr/molokai')
 call dein#add('thinca/vim-quickrun')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('simeji/winresizer')
+call dein#add('cohama/lexima.vim')
 
 " Required:
 call dein#end()
