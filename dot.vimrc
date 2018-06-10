@@ -29,6 +29,11 @@ autocmd InsertLeave * set nopaste
 " set leader key bind
 let mapleader = "\<Space>"
 
+if has('mac')
+    set clipboard+=unnamed
+endif
+
+
 "dein Scripts-----------------------------
 if &compatible
     set nocompatible               " Be iMproved
