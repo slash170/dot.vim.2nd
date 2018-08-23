@@ -165,11 +165,7 @@ endif
 
 
 " lightline settings
-if has("unix")
-    let g:lightline = {
-          \ 'colorscheme': 'wombat',
-          \ }
-elseif has("mac")
+if has("mac")
     let g:lightline = {
           \ 'colorscheme': 'wombat',
           \ 'active': {
@@ -217,6 +213,11 @@ elseif has("mac")
            \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
     endfunction
+
+elseif has("unix")
+    let g:lightline = {
+          \ 'colorscheme': 'wombat',
+          \ }
 endif
 
 if !has('gui_running')
