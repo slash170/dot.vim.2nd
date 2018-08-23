@@ -11,6 +11,6 @@ $ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
 $ sh ./installer.sh $(pwd)
 $ cd repos/github.com/Shougo/vimproc.vim
 $ make
-$ cd ~/.vim/.dein/lib
-$ ln -s ../../repos/github.com/Shougo/vimproc.vim/lib/vimproc_mac.so
+$ cd ~/.vim/.cache/.vimrc/.dein/lib
+$ ln -s ../../../../repos/github.com/Shougo/vimproc.vim/lib/vimproc_linux64.so
 ```
