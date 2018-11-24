@@ -1,6 +1,10 @@
 "-------------------------------------------------
 " base config
 
-set guifont=Ricty:h16
-set lines=40
-set columns=160
+if has("unix")
+    set guifont=Ricty\ Diminished\ for\ Powerline\ 10
+elseif has("mac")
+    set guifont=Ricty:h16
+endif
+set lines=35
+set columns=140
