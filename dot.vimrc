@@ -112,8 +112,9 @@ endif
 
 
 "" vim-filer settings
-noremap <C-e> :<C-u>VimFilerExplorer<CR>
-inoremap <C-e> <ESC>:<C-u>VimFilerExplorer<CR>
+let g:vimfiler_as_default_explorer = 1
+noremap <C-e> :<C-u>VimFilerBufferDir -explorer<CR>
+inoremap <C-e> <ESC>:<C-u>VimFilerBufferDir -explorer<CR>
 
 
 "" denite settings
