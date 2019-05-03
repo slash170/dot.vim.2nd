@@ -1,25 +1,43 @@
 ""  base settings
 set number
 set showmatch
-set autoindent
+set smartindent
 set shiftwidth=4
 set tabstop=4
 set expandtab
 set title
 set laststatus=2
 set hlsearch incsearch
+set ignorecase
+set smartcase
 set backspace=indent,eol,start
 set cursorline
 set cursorcolumn
+set noswapfile
+set wildmenu
+set wildmode=full
+set virtualedit=block
+set mouse=a
+set ttymouse=xterm2
 
-syntax on
+syntax enable
 colorscheme molokai
 highlight search cterm=NONE ctermfg=grey ctermbg=blue
 
 " esc key bind
-imap <c-j> <esc>
-vmap <c-j> <esc>
-smap <c-j> <esc>
+noremap  <C-c> <esc>
+noremap! <C-c> <esc>
+
+" cursor move for command-line-mode
+cnoremap <C-a> <Home>
+" cursor move for normal-mode
+nnoremap <C-j> }
+nnoremap <C-k> {
+
+" shortcut command for word replace
+nnoremap <Leader>re :%s;<C-R><C-W>;gc<Left><Left><Left>;
+" don't move the cursor when used '*' command
+noremap  * *N
 
 " paste mode toggle
 set pastetoggle=<F2>
@@ -27,7 +45,7 @@ set pastetoggle=<F2>
 autocmd InsertLeave * set nopaste
 
 " set leader key bind
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 " set clipboard
 set clipboard+=unnamed
@@ -122,7 +140,7 @@ noremap <C-p> :<C-u>Denite buffer<CR>
 " 最近使ったファイルの一覧
 noremap <Leader><C-a> :<C-u>Denite file_mru<CR>
 " カレントディレクトリ配下のファイルの一覧
-noremap <Leader><C-l> :<C-u>Denite file_rec<CR>
+noremap <Leader><C-l> :<C-u>Denite file/rec<CR>
 " カレントディレクトリ配下のファイルに対して grep(ag)
 noremap <Leader><C-g> :<C-u>Denite grep    -buffer-name=search-buffer-denite<CR>
 noremap <Leader><C-r> :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
