@@ -25,8 +25,8 @@ colorscheme molokai
 highlight search cterm=NONE ctermfg=grey ctermbg=blue
 
 " esc key bind
-noremap  <C-c> <esc>
-noremap! <C-c> <esc>
+noremap  <C-c> <Esc>
+noremap! <C-c> <Esc>
 
 " cursor move for command-line-mode
 cnoremap <C-a> <Home>
