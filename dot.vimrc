@@ -91,6 +91,8 @@ call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('simeji/winresizer')
 call dein#add('cohama/lexima.vim')
 call dein#add('easymotion/vim-easymotion')
+call dein#add('RRethy/vim-illuminate')
+call dein#add('ujihisa/neco-look')  " required 'look' command and 'words' package
 
 " Required:
 call dein#end()
@@ -315,3 +317,7 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
+" Time in millis (default 250)
+let g:Illuminate_delay = 250
+highlight illuminatedWord cterm=NONE ctermfg=grey ctermbg=55
