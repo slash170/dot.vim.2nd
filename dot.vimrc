@@ -70,7 +70,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('zchee/deoplete-go', {'build': 'make'})
 call dein#add('zchee/deoplete-jedi')
-call dein#add('davidhalter/jedi')
+" call dein#add('davidhalter/jedi')
 call dein#add('roxma/nvim-yarp')
 call dein#add('roxma/vim-hug-neovim-rpc')
 call dein#add('Shougo/unite.vim')
@@ -96,6 +96,8 @@ call dein#add('ujihisa/neco-look')  " required 'look' command and 'words' packag
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('tpope/vim-fugitive')
+call dein#add('prabirshrestha/async.vim')
+call dein#add('prabirshrestha/vim-lsp')
 
 " Required:
 call dein#end()
@@ -367,3 +369,23 @@ command! -nargs=0 Ghq
   \              'source': 'ghq list --full-path',
   \              'sink': 'cd'
   \              })
+
+" Language Server Setting
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+"" Language Server for Python
+if executable('pyls')
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+"" Language Server for Golang
+" if executable('go-langserver')
+"     au User lsp_setup call lsp#register_server({
+"        \ 'name': 'go-langserver',
+"        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion', '-diagnostics']},
+"        \ 'whitelist': ['go'],
+"        \ })
+" endif
