@@ -93,6 +93,9 @@ call dein#add('cohama/lexima.vim')
 call dein#add('easymotion/vim-easymotion')
 call dein#add('RRethy/vim-illuminate')
 call dein#add('ujihisa/neco-look')  " required 'look' command and 'words' package
+call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+call dein#add('tpope/vim-fugitive')
 
 " Required:
 call dein#end()
@@ -140,9 +143,9 @@ call denite#custom#var('grep', 'final_opts', [])
 " バッファ一覧
 noremap <C-p> :<C-u>Denite buffer<CR>
 " 最近使ったファイルの一覧
-noremap <Leader><C-a> :<C-u>Denite file_mru<CR>
+" noremap <Leader><C-a> :<C-u>Denite file_mru<CR>
 " カレントディレクトリ配下のファイルの一覧
-noremap <Leader><C-l> :<C-u>Denite file/rec<CR>
+" noremap <Leader><C-l> :<C-u>Denite file/rec<CR>
 " カレントディレクトリ配下のファイルに対して grep(ag)
 noremap <Leader><C-g> :<C-u>Denite grep    -buffer-name=search-buffer-denite<CR>
 noremap <Leader><C-r> :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
@@ -321,3 +324,45 @@ map <Leader>k <Plug>(easymotion-k)
 " Time in millis (default 250)
 let g:Illuminate_delay = 250
 highlight illuminatedWord cterm=NONE ctermfg=grey ctermbg=55
+
+""" fzf setting
+" let g:fzf_command_prefix = 'Fzf'
+noremap <Leader><C-l>      :<C-u>Files<CR>
+noremap <Leader><C-s>      :<C-u>Ghq<CR>
+noremap <Leader><C-g><C-l> :<C-u>GFiles<CR>
+noremap <Leader><C-g><C-c> :<C-u>Commits<CR>
+noremap <Leader><C-a>      :<C-u>History<CR>
+
+" Command for git grep
+" - fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], [preview window], [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Bat: https://github.com/sharkdp/bat
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" Command for GHQ
+command! -nargs=0 Ghq
+  \ call fzf#run({
+  \              'source': 'ghq list --full-path',
+  \              'sink': 'cd'
+  \              })
