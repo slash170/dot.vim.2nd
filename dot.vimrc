@@ -295,11 +295,10 @@ let g:table_mode_header_fillchar="="
 
 
 "" global settings
-" map <Leader><C-g> :Gtags
-" map <Leader><C-h> :Gtags -f %<CR>
-" map <Leader><C-j> :GtagsCursor<CR>
-" map <C-m> :cn<CR>
-" map <C-b> :cp<CR>
+noremap <Leader><C-f> :Gtags -f %<CR>
+noremap <Leader><C-j> :GtagsCursor<CR>
+noremap <C-n>         :cn<CR>
+noremap <C-m>         :cp<CR>
 
 
 "" winresizer settings
