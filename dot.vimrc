@@ -35,7 +35,7 @@ nnoremap <C-j> }
 nnoremap <C-k> {
 
 " shortcut command for word replace
-nnoremap <Leader>re :%s;<C-R><C-W>;gc<Left><Left><Left>;
+nnoremap <C-R><C-E> :%s;<C-R><C-W>;gc<Left><Left><Left>;
 " don't move the cursor when used '*' command
 noremap  * *N
 
