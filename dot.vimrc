@@ -292,6 +292,7 @@ highlight illuminatedWord cterm=NONE ctermfg=grey ctermbg=55
 
 """ fzf setting
 " let g:fzf_command_prefix = 'Fzf'
+noremap <Leader><C-p>      :<C-u>Buffers<CR>
 noremap <Leader><C-l>      :<C-u>Files<CR>
 noremap <Leader><C-s>      :<C-u>Ghq<CR>
 noremap <Leader><C-g><C-l> :<C-u>GFiles<CR>
