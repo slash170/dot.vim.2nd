@@ -74,8 +74,8 @@ call dein#add('zchee/deoplete-jedi')
 call dein#add('roxma/nvim-yarp')
 call dein#add('roxma/vim-hug-neovim-rpc')
 call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/denite.nvim')
-call dein#add('Shougo/unite-outline')
+" call dein#add('Shougo/denite.nvim')
+" call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/vimshell.vim')
@@ -117,43 +117,6 @@ endif
 let g:vimfiler_as_default_explorer = 1
 noremap <C-e> :<C-u>VimFilerBufferDir -explorer<CR>
 inoremap <C-e> <ESC>:<C-u>VimFilerBufferDir -explorer<CR>
-
-
-"" denite settings
-" Change mappings.
-call denite#custom#map(
-      \ 'insert',
-      \ '<C-j>',
-      \ '<denite:move_to_next_line>',
-      \ 'noremap'
-      \)
-call denite#custom#map(
-      \ 'insert',
-      \ '<C-k>',
-      \ '<denite:move_to_previous_line>',
-      \ 'noremap'
-      \)
-
-" Ag command on grep source
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts',
-		\ ['-i', '--nocolor', '--nogroup'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-" バッファ一覧
-noremap <C-p> :<C-u>Denite buffer<CR>
-" 最近使ったファイルの一覧
-" noremap <Leader><C-a> :<C-u>Denite file_mru<CR>
-" カレントディレクトリ配下のファイルの一覧
-" noremap <Leader><C-l> :<C-u>Denite file/rec<CR>
-" カレントディレクトリ配下のファイルに対して grep(ag)
-noremap <Leader><C-g> :<C-u>Denite grep    -buffer-name=search-buffer-denite<CR>
-noremap <Leader><C-r> :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
-" function outline 表示
-noremap <C-f> :<C-u>Denite unite:outline<CR>
 
 
 " deoplete settings
