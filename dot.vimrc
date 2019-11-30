@@ -20,7 +20,6 @@ set virtualedit=block
 set mouse=a
 set ttymouse=xterm2
 
-syntax enable
 colorscheme molokai
 highlight search cterm=NONE ctermfg=grey ctermbg=blue
 
@@ -46,57 +45,61 @@ let g:mapleader = "\<Space>"
 " set clipboard
 set clipboard+=unnamed
 
-
 "dein Scripts-----------------------------
 if &compatible
-    set nocompatible               " Be iMproved
+  set nocompatible               " Be iMproved
 endif
 
 " Required:
 set runtimepath+=$HOME/.vim/repos/github.com/Shougo/dein.vim
-call dein#begin($HOME . '/.vim/')
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
-
-" Add or remove your plugins here:
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/vimfiler.vim')
-call dein#add('Shougo/vimshell.vim')
-call dein#add('Shougo/vimproc.vim')
-call dein#add('itchyny/lightline.vim')
-call dein#add('fatih/vim-go')
-call dein#add('vim-syntastic/syntastic')
-call dein#add('nathanaelkane/vim-indent-guides')
-call dein#add('tyru/caw.vim')
-call dein#add('tomasr/molokai')
-call dein#add('thinca/vim-quickrun')
-call dein#add('dhruvasagar/vim-table-mode')
-call dein#add('simeji/winresizer')
-call dein#add('cohama/lexima.vim')
-call dein#add('easymotion/vim-easymotion')
-call dein#add('RRethy/vim-illuminate')
-call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
-call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-call dein#add('tpope/vim-fugitive')
-call dein#add('prabirshrestha/async.vim')
-call dein#add('prabirshrestha/vim-lsp')
 
 " Required:
-call dein#end()
+if dein#load_state($HOME . '/.vim/')
+  call dein#begin($HOME . '/.vim/')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add($HOME . '/.vim/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here like this:
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/vimfiler.vim')
+  call dein#add('Shougo/vimshell.vim')
+  call dein#add('Shougo/vimproc.vim')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('fatih/vim-go')
+  call dein#add('vim-syntastic/syntastic')
+  call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('tyru/caw.vim')
+  call dein#add('tomasr/molokai')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('dhruvasagar/vim-table-mode')
+  call dein#add('simeji/winresizer')
+  call dein#add('cohama/lexima.vim')
+  call dein#add('easymotion/vim-easymotion')
+  call dein#add('RRethy/vim-illuminate')
+  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('prabirshrestha/async.vim')
+  call dein#add('prabirshrestha/vim-lsp')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
 
 " Required:
 filetype plugin indent on
+syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
-    call dein#install()
+  call dein#install()
 endif
 
 "End dein Scripts-------------------------
-
 
 "" vim-filer settings
 let g:vimfiler_as_default_explorer = 1
