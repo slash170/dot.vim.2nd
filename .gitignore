@@ -4,4 +4,6 @@
 /.cache/*
 /repos/*
 merged
+cache_vim
+state_vim.vim
 installer.sh
