@@ -78,7 +78,6 @@ call dein#add('simeji/winresizer')
 call dein#add('cohama/lexima.vim')
 call dein#add('easymotion/vim-easymotion')
 call dein#add('RRethy/vim-illuminate')
-call dein#add('ujihisa/neco-look')  " required 'look' command and 'words' package
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('tpope/vim-fugitive')
