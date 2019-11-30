@@ -61,17 +61,7 @@ call dein#begin($HOME . '/.vim/')
 call dein#add('Shougo/dein.vim')
 
 " Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('zchee/deoplete-go', {'build': 'make'})
-call dein#add('zchee/deoplete-jedi')
-" call dein#add('davidhalter/jedi')
-call dein#add('roxma/nvim-yarp')
-call dein#add('roxma/vim-hug-neovim-rpc')
 call dein#add('Shougo/unite.vim')
-" call dein#add('Shougo/denite.nvim')
-" call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/vimshell.vim')
@@ -114,32 +104,6 @@ let g:vimfiler_as_default_explorer = 1
 noremap <C-e> :<C-u>VimFilerBufferDir -explorer<CR>
 inoremap <C-e> <ESC>:<C-u>VimFilerBufferDir -explorer<CR>
 
-
-" deoplete settings
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_yarp = 1
-
-" deoplete-go
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'bin/gocode'
-let g:deoplete#sources#go#package_dot = 1
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-let g:deoplete#sources#go#pointer = 1
-set completeopt+=noinsert
-set completeopt+=noselect
-
-"" neosnippet
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
@@ -340,11 +304,3 @@ if executable('pyls')
         \ 'whitelist': ['python'],
         \ })
 endif
-"" Language Server for Golang
-" if executable('go-langserver')
-"     au User lsp_setup call lsp#register_server({
-"        \ 'name': 'go-langserver',
-"        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion', '-diagnostics']},
-"        \ 'whitelist': ['go'],
-"        \ })
-" endif
