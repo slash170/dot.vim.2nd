@@ -336,13 +336,15 @@ noremap <Leader><C-g><C-l> :<C-u>GFiles<CR>
 noremap <Leader><C-g><C-c> :<C-u>Commits<CR>
 noremap <Leader><C-a>      :<C-u>History<CR>
 
-" Command for git grep
-" - fzf#vim#grep(command, with_column, [options], [fullscreen])
+" - Command for git grep:{{{
+" fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+"}}}
 
+" - Command for Ag:{{{
 " Augmenting Ag command using fzf#vim#with_preview function
 "   * fzf#vim#with_preview([[options], [preview window], [toggle keys...]])
 "     * For syntax-highlighting, Ruby and any of the following tools are required:
@@ -358,17 +360,20 @@ command! -bang -nargs=* Ag
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+"}}}
 
-" Likewise, Files command with preview window
+" - Likewise, Files command with preview window:{{{
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+"}}}
 
-" Command for GHQ
+" - Command for ghq:{{{
 command! -nargs=0 Ghq
   \ call fzf#run({
   \              'source': 'ghq list --full-path',
   \              'sink': 'cd'
   \              })
+"}}}
 "}}}
 
 "---------------------------------------------------------------------------
