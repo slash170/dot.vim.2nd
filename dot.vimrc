@@ -107,6 +107,8 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('tpope/vim-fugitive')
   call dein#add('prabirshrestha/async.vim')
   call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('prabirshrestha/asyncomplete.vim')
+  call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 
   " Required:
   call dein#end()
