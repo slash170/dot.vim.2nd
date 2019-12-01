@@ -377,11 +377,14 @@ command! -nargs=0 Ghq
 "}}}
 
 "---------------------------------------------------------------------------
-" Language Server:"{{{
+" Language Server:{{{
 "
+let g:lsp_diagnostics_enabled = 0
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
-"" Language Server for Python
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+" - Language Server for Python:{{{
 if executable('pyls')
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'pyls',
@@ -389,4 +392,5 @@ if executable('pyls')
         \ 'whitelist': ['python'],
         \ })
 endif
+"}}}
 "}}}
