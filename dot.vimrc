@@ -245,9 +245,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
-autocmd ReloadVimrc FileType go nmap <Leader>ds <Plug>(go-def-split)
-autocmd ReloadVimrc FileType go nmap <Leader>dt <Plug>(go-def-tab)
-autocmd ReloadVimrc FileType go nmap <Leader>gd <Plug>(go-doc)
+let g:go_def_mapping_enabled = 0  " for Language Server config 
 "}}}
 
 "---------------------------------------------------------------------------
@@ -381,18 +379,47 @@ command! -nargs=0 Ghq
 "---------------------------------------------------------------------------
 " Language Server:{{{
 "
+" let g:asyncomplete_auto_popup = 0
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+
 let g:lsp_diagnostics_enabled = 0
+let g:lsp_signature_help_enabled = 0
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 " let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 " - Language Server for Python:{{{
 if executable('pyls')
+  augroup LspPython
+    autocmd!
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'pyls',
         \ 'cmd': {server_info->['pyls']},
         \ 'whitelist': ['python'],
         \ })
+    autocmd FileType python setlocal omnifunc=lsp#complete
+    autocmd FileType python nmap <buffer> gd <plug>(lsp-definition)
+  augroup END
+endif
+"}}}
+
+" - Language Server for Go:{{{
+if executable('gopls')
+  augroup LspGo
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \   'name': 'gopls',
+        \   'cmd': {server_info->['gopls']},
+        \   'whitelist': ['go'],
+        \   'workspace_config': {'gopls': {
+        \       'completeUnimported': v:true,
+        \   }},
+        \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+    autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
+  augroup END
 endif
 "}}}
 "}}}
