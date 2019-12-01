@@ -379,16 +379,20 @@ command! -nargs=0 Ghq
 "---------------------------------------------------------------------------
 " Language Server:{{{
 "
+" for debug work config
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+" for asyncomplete config
 " let g:asyncomplete_auto_popup = 0
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
 
+" for vim-lsp config
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_signature_help_enabled = 0
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
-" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 " - Language Server for Python:{{{
 if executable('pyls')
