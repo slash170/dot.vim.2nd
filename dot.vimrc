@@ -1,7 +1,9 @@
+" vim: foldmethod=marker
 "---------------------------------------------------------------------------
 " .vimrc
 "---------------------------------------------------------------------------
-
+" Initialize:"{{{
+"
 augroup ReloadVimrc
     autocmd!
 augroup END
@@ -21,6 +23,7 @@ set smartcase
 set backspace=indent,eol,start
 set cursorline
 set cursorcolumn
+set splitbelow
 set noswapfile
 set wildmenu
 set wildmode=full
@@ -60,7 +63,11 @@ nnoremap <silent> <Leader>tv :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <silent> <Leader>tg :<C-u>tabedit $MYGVIMRC<CR>
 nnoremap <silent> <Leader>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Leader>rg :<C-u>source $MYGVIMRC<CR>
+"}}}
 
+"---------------------------------------------------------------------------
+" Plugin Loading:"{{{
+"
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
@@ -116,21 +123,28 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
+"}}}
 
-"" vim-filer settings
+"---------------------------------------------------------------------------
+" VimFiler:"{{{
+"
 let g:vimfiler_as_default_explorer = 1
 noremap <C-e> :<C-u>VimFilerBufferDir -explorer<CR>
 inoremap <C-e> <ESC>:<C-u>VimFilerBufferDir -explorer<CR>
+"}}}
 
-
-" For conceal markers.
+"---------------------------------------------------------------------------
+" For Conceal:"{{{
+"
 if has('conceal')
     set conceallevel=2 concealcursor=niv
     autocmd ReloadVimrc FileType json setl conceallevel=0 
 endif
+"}}}
 
-
-" lightline settings
+"---------------------------------------------------------------------------
+" LightLine:"{{{
+"
 if has("mac")
     let g:lightline = {
           \ 'colorscheme': 'wombat',
@@ -189,9 +203,11 @@ endif
 if !has('gui_running')
     set t_Co=256
 endif
+"}}}
 
-
-"vim-go setteings
+"---------------------------------------------------------------------------
+" VimGO:"{{{
+"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -199,49 +215,64 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+
 autocmd ReloadVimrc FileType go nmap <Leader>ds <Plug>(go-def-split)
 autocmd ReloadVimrc FileType go nmap <Leader>dt <Plug>(go-def-tab)
 autocmd ReloadVimrc FileType go nmap <Leader>gd <Plug>(go-doc)
+"}}}
 
-
-"" caw
+"---------------------------------------------------------------------------
+" CAW:"{{{
+"
 nmap <Leader>c <Plug>(caw:hatpos:toggle)
 vmap <Leader>c <Plug>(caw:hatpos:toggle)
+"}}}
 
-
-" vim-indent-guides
+"---------------------------------------------------------------------------
+" VimIndentGuides:"{{{
+"
 let g:indent_guides_auto_colors=0
 autocmd ReloadVimrc VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=237
 autocmd ReloadVimrc VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
+
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
+"}}}
 
-
-"" quickrun
+"---------------------------------------------------------------------------
+" QuickRun:"{{{
+"
 let g:quickrun_config={
     \ '*': {'outputter/buffer/split': '10',
     \       'hook/time/enable': '1'}
     \ }
-set splitbelow
+"}}}
 
-
-"" table mode
+"---------------------------------------------------------------------------
+" TableMode:"{{{
+"
 let g:table_mode_corner_corner="+"
 let g:table_mode_header_fillchar="="
+"}}}
 
-
-"" global settings
+"---------------------------------------------------------------------------
+" GNU GLOBAL:"{{{
+"
 noremap <Leader><C-f> :Gtags -f %<CR>
 noremap <Leader><C-j> :GtagsCursor<CR>
 " noremap <C-n>         :cn<CR>
 " noremap <C-m>         :cp<CR>
+"}}}
 
-
-"" winresizer settings
+"---------------------------------------------------------------------------
+" WIN Resizer:"{{{
+"
 let g:winresizer_start_key = '<Leader><C-E>'
+"}}}
 
-
-"" easymotion settings
+"---------------------------------------------------------------------------
+" EasyMotion:"{{{
+"
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -258,12 +289,18 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+"}}}
 
-" Time in millis (default 250)
+"---------------------------------------------------------------------------
+" Illuminate:"{{{
+"
 let g:Illuminate_delay = 250
 highlight illuminatedWord cterm=NONE ctermfg=grey ctermbg=55
+"}}}
 
-""" fzf setting
+"---------------------------------------------------------------------------
+" Fzf:"{{{
+"
 " let g:fzf_command_prefix = 'Fzf'
 noremap <Leader><C-p>      :<C-u>Buffers<CR>
 noremap <Leader><C-l>      :<C-u>Files<CR>
@@ -305,8 +342,11 @@ command! -nargs=0 Ghq
   \              'source': 'ghq list --full-path',
   \              'sink': 'cd'
   \              })
+"}}}
 
-" Language Server Setting
+"---------------------------------------------------------------------------
+" Language Server:"{{{
+"
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 "" Language Server for Python
@@ -317,3 +357,4 @@ if executable('pyls')
         \ 'whitelist': ['python'],
         \ })
 endif
+"}}}
