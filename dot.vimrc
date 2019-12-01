@@ -90,8 +90,9 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('Shougo/vimshell.vim')
   call dein#add('Shougo/vimproc.vim')
   call dein#add('itchyny/lightline.vim')
+  call dein#add('maximbaz/lightline-ale')
   call dein#add('fatih/vim-go')
-  call dein#add('vim-syntastic/syntastic')
+  call dein#add('dense-analysis/ale')
   call dein#add('nathanaelkane/vim-indent-guides')
   call dein#add('tyru/caw.vim')
   call dein#add('tomasr/molokai')
@@ -149,7 +150,8 @@ if has("mac")
           \ 'colorscheme': 'wombat',
           \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'fugitive', 'filename' ] ]
+          \             [ 'fugitive', 'readonly', 'filename', 'modified' ],
+          \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
           \ },
           \ 'component_function': {
           \   'fugitive': 'LightlineFugitive',
@@ -196,8 +198,34 @@ if has("mac")
 elseif has("unix")
     let g:lightline = {
           \ 'colorscheme': 'wombat',
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+          \             [ 'fugitive', 'readonly', 'filename', 'modified' ],
+          \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
+          \ },
+          \ 'component_function': {
+          \   'fugitive': 'LightlineFugitive'
+          \ },
           \ }
+
+    function! LightlineFugitive()
+      return exists('*fugitive#head') ? fugitive#head() : ''
+    endfunction
 endif
+
+" lightline-ale
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
 
 if !has('gui_running')
     set t_Co=256
