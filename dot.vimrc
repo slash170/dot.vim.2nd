@@ -54,6 +54,13 @@ set clipboard+=unnamed
 " Turn off paste mode when leaving insert
 autocmd ReloadVimrc InsertLeave * set nopaste
 
+nnoremap <silent> <Leader>ev :<C-u>edit $MYVIMRC<CR>
+nnoremap <silent> <Leader>eg :<C-u>edit $MYGVIMRC<CR>
+nnoremap <silent> <Leader>tv :<C-u>tabedit $MYVIMRC<CR>
+nnoremap <silent> <Leader>tg :<C-u>tabedit $MYGVIMRC<CR>
+nnoremap <silent> <Leader>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
+nnoremap <silent> <Leader>rg :<C-u>source $MYGVIMRC<CR>
+
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
