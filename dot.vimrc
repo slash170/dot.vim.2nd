@@ -1,3 +1,11 @@
+"---------------------------------------------------------------------------
+" .vimrc
+"---------------------------------------------------------------------------
+
+augroup ReloadVimrc
+    autocmd!
+augroup END
+
 ""  base settings
 set number
 set showmatch
@@ -36,14 +44,15 @@ noremap  * *N
 
 " paste mode toggle
 set pastetoggle=<F2>
-" Turn off paste mode when leaving insert
-autocmd InsertLeave * set nopaste
 
 " set leader key bind
 let g:mapleader = "\<Space>"
 
 " set clipboard
 set clipboard+=unnamed
+
+" Turn off paste mode when leaving insert
+autocmd ReloadVimrc InsertLeave * set nopaste
 
 "dein Scripts-----------------------------
 if &compatible
@@ -110,7 +119,7 @@ inoremap <C-e> <ESC>:<C-u>VimFilerBufferDir -explorer<CR>
 " For conceal markers.
 if has('conceal')
     set conceallevel=2 concealcursor=niv
-    autocmd FileType json setl conceallevel=0 
+    autocmd ReloadVimrc FileType json setl conceallevel=0 
 endif
 
 
@@ -174,11 +183,6 @@ if !has('gui_running')
     set t_Co=256
 endif
 
-augroup reload_vimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-augroup END
-
 
 "vim-go setteings
 let g:go_highlight_functions = 1
@@ -188,9 +192,9 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
+autocmd ReloadVimrc FileType go nmap <Leader>ds <Plug>(go-def-split)
+autocmd ReloadVimrc FileType go nmap <Leader>dt <Plug>(go-def-tab)
+autocmd ReloadVimrc FileType go nmap <Leader>gd <Plug>(go-doc)
 
 
 "" caw
@@ -200,8 +204,8 @@ vmap <Leader>c <Plug>(caw:hatpos:toggle)
 
 " vim-indent-guides
 let g:indent_guides_auto_colors=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=237
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
+autocmd ReloadVimrc VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=237
+autocmd ReloadVimrc VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 
