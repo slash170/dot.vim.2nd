@@ -257,10 +257,10 @@ let g:table_mode_header_fillchar="="
 "---------------------------------------------------------------------------
 " GNU GLOBAL:"{{{
 "
-noremap <Leader><C-f> :Gtags -f %<CR>
-noremap <Leader><C-j> :GtagsCursor<CR>
-" noremap <C-n>         :cn<CR>
-" noremap <C-m>         :cp<CR>
+nnoremap <Leader><C-f> :<C-u>Gtags -f %<CR>
+nnoremap <Leader><C-j> :<C-u>GtagsCursor<CR>
+" nnoremap <C-n>       :<C-u>cn<CR>
+" nnoremap <C-m>       :<C-u>cp<CR> " can't use this key-map
 "}}}
 
 "---------------------------------------------------------------------------
