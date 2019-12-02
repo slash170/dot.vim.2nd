@@ -86,6 +86,8 @@ if dein#load_state($HOME . '/.vim/')
 
   " Add or remove your plugins here like this:
   call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/vimfiler.vim')
   call dein#add('Shougo/vimshell.vim')
   call dein#add('Shougo/vimproc.vim')
@@ -109,6 +111,7 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('prabirshrestha/vim-lsp')
   call dein#add('prabirshrestha/asyncomplete.vim')
   call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+  call dein#add('prabirshrestha/asyncomplete-neosnippet.vim')
 
   " Required:
   call dein#end()
@@ -389,6 +392,16 @@ command! -nargs=0 Ghq
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+
+call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+    \ 'name': 'neosnippet',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+    \ }))
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " for vim-lsp config
 let g:lsp_diagnostics_enabled = 0
