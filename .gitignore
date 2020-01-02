@@ -6,4 +6,6 @@
 merged
 cache_vim
 state_vim.vim
+cache_gvim
+state_gvim.vim
 installer.sh
