@@ -9,6 +9,7 @@ run `dein.vim` Quick start procedure.
 ```
 $ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
 $ sh ./installer.sh $(pwd)
+$ vim -c 'qall!'
 $ cd repos/github.com/Shougo/vimproc.vim
 $ make
 $ cd ~/.vim/.cache/.vimrc/.dein/lib
