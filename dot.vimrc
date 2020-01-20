@@ -91,6 +91,7 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('Shougo/vimfiler.vim')
   call dein#add('Shougo/vimshell.vim')
   call dein#add('Shougo/vimproc.vim')
+  call dein#add('skanehira/preview-markdown.vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('maximbaz/lightline-ale')
   call dein#add('fatih/vim-go')
@@ -256,6 +257,12 @@ let g:go_def_mapping_enabled = 0  " for Language Server config
 "
 nmap <Leader>c <Plug>(caw:hatpos:toggle)
 vmap <Leader>c <Plug>(caw:hatpos:toggle)
+"}}}
+
+"---------------------------------------------------------------------------
+" Markdown Preview:"{{{
+"
+let g:preview_markdown_vertical = 1
 "}}}
 
 "---------------------------------------------------------------------------
