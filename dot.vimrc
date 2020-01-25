@@ -92,6 +92,8 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('Shougo/vimshell.vim')
   call dein#add('Shougo/vimproc.vim')
   call dein#add('skanehira/preview-markdown.vim')
+  call dein#add('previm/previm')
+  call dein#add('tyru/open-browser.vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('maximbaz/lightline-ale')
   call dein#add('fatih/vim-go')
@@ -145,6 +147,7 @@ inoremap <C-e> <ESC>:<C-u>VimFilerBufferDir -explorer<CR>
 if has('conceal')
     set conceallevel=2 concealcursor=niv
     autocmd ReloadVimrc FileType json setl conceallevel=0 
+    autocmd ReloadVimrc FileType markdown setl conceallevel=0 
 endif
 "}}}
 
