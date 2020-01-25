@@ -52,7 +52,7 @@ set pastetoggle=<F2>
 let g:mapleader = "\<Space>"
 
 " set clipboard
-set clipboard+=unnamed
+set clipboard^=unnamed,unnamedplus
 
 " Turn off paste mode when leaving insert
 autocmd ReloadVimrc InsertLeave * set nopaste
