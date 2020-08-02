@@ -399,39 +399,35 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " for vim-lsp config
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_signature_help_enabled = 0
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
 
-" - Language Server for Python:{{{
-if executable('pyls')
-  augroup LspPython
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-    autocmd FileType python setlocal omnifunc=lsp#complete
-    autocmd FileType python nmap <buffer> gd <plug>(lsp-definition)
-  augroup END
-endif
-"}}}
+let g:lsp_settings = {}
+let g:lsp_settings['gopls'] = {
+  \  'workspace_config': {
+  \    'analyses': {
+  \      'fillstruct': v:true,
+  \    },
+  \  },
+  \  'initialization_options': {
+  \    'analyses': {
+  \      'fillstruct': v:true,
+  \    },
+  \  },
+  \}
 
-" - Language Server for Go:{{{
-if executable('gopls')
-  augroup LspGo
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'gopls',
-        \   'cmd': {server_info->['gopls']},
-        \   'whitelist': ['go'],
-        \   'workspace_config': {'gopls': {
-        \       'completeUnimported': v:true,
-        \   }},
-        \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-    autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
-  augroup END
-endif
-"}}}
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  nmap <buffer> gd  <plug>(lsp-definition)
+  nmap <buffer> gpd <plug>(lsp-peek-definition)
+  nmap <buffer> gh  <plug>(lsp-hover)
+  nmap <buffer> gr  <plug>(lsp-rename)
+  nmap <buffer> gca <plug>(lsp-code-action)
+  nmap <buffer> gdd <plug>(lsp-document-diagnostics)
+endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 "}}}
