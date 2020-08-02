@@ -113,6 +113,7 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('prabirshrestha/asyncomplete.vim')
   call dein#add('prabirshrestha/asyncomplete-lsp.vim')
   call dein#add('prabirshrestha/asyncomplete-neosnippet.vim')
+  call dein#add('mattn/vim-lsp-settings', {'merged': 0})
 
   " Required:
   call dein#end()
