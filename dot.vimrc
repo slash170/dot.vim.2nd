@@ -88,9 +88,9 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('Shougo/unite.vim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/vimfiler.vim')
   call dein#add('Shougo/vimshell.vim')
   call dein#add('Shougo/vimproc.vim')
+  call dein#add('lambdalisue/fern.vim')
   call dein#add('skanehira/preview-markdown.vim')
   call dein#add('previm/previm')
   call dein#add('tyru/open-browser.vim')
@@ -134,11 +134,10 @@ endif
 "}}}
 
 "---------------------------------------------------------------------------
-" VimFiler:"{{{
+" Fern:"{{{
 "
-let g:vimfiler_as_default_explorer = 1
-noremap <C-e> :<C-u>VimFilerBufferDir -explorer<CR>
-inoremap <C-e> <ESC>:<C-u>VimFilerBufferDir -explorer<CR>
+noremap <C-e> :<C-u>Fern . -drawer -toggle -keep<CR>
+inoremap <C-e> <ESC>:<C-u>Fern . -drawer -toggle -keep<CR>
 "}}}
 
 "---------------------------------------------------------------------------
