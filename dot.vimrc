@@ -10,6 +10,7 @@ augroup END
 
 ""  base settings
 set number
+set history=5000
 set showmatch
 set smartindent
 set shiftwidth=4
