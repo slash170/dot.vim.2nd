@@ -10,6 +10,7 @@ augroup END
 
 ""  base settings
 set number
+set relativenumber
 set history=5000
 set showmatch
 set smartindent
