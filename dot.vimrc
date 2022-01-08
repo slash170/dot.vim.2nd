@@ -93,6 +93,8 @@ if dein#load_state($HOME . '/.vim/')
   call dein#add('Shougo/vimshell.vim')
   call dein#add('Shougo/vimproc.vim')
   call dein#add('lambdalisue/fern.vim')
+  call dein#add('lambdalisue/nerdfont.vim')
+  call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
   call dein#add('skanehira/preview-markdown.vim')
   call dein#add('previm/previm')
   call dein#add('tyru/open-browser.vim')
@@ -140,6 +142,8 @@ endif
 "
 noremap <C-e> :<C-u>Fern . -drawer -toggle -keep<CR>
 inoremap <C-e> <ESC>:<C-u>Fern . -drawer -toggle -keep<CR>
+
+let g:fern#renderer = "nerdfont"
 "}}}
 
 "---------------------------------------------------------------------------
