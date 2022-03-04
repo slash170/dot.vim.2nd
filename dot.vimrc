@@ -33,6 +33,12 @@ set virtualedit=block
 set mouse=a
 set ttymouse=xterm2
 
+if &compatible
+  set nocompatible
+endif
+filetype plugin indent on
+syntax enable
+
 colorscheme molokai
 highlight search cterm=NONE ctermfg=grey ctermbg=blue
 
@@ -70,72 +76,39 @@ nnoremap <silent> <Leader>rg :<C-u>source $MYGVIMRC<CR>
 "---------------------------------------------------------------------------
 " Plugin Loading:"{{{
 "
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+call jetpack#begin()
+call jetpack#add('Shougo/neosnippet.vim')
+call jetpack#add('Shougo/neosnippet-snippets')
+call jetpack#add('lambdalisue/fern.vim')
+call jetpack#add('lambdalisue/nerdfont.vim')
+call jetpack#add('lambdalisue/fern-renderer-nerdfont.vim')
+call jetpack#add('tpope/vim-surround')
+call jetpack#add('skanehira/preview-markdown.vim')
+call jetpack#add('previm/previm')
+call jetpack#add('tyru/open-browser.vim')
+call jetpack#add('itchyny/lightline.vim')
+call jetpack#add('fatih/vim-go')
+call jetpack#add('nathanaelkane/vim-indent-guides')
+call jetpack#add('tyru/caw.vim')
+call jetpack#add('tomasr/molokai')
+call jetpack#add('thinca/vim-quickrun')
+call jetpack#add('dhruvasagar/vim-table-mode')
+call jetpack#add('simeji/winresizer')
+call jetpack#add('cohama/lexima.vim')
+call jetpack#add('easymotion/vim-easymotion')
+call jetpack#add('RRethy/vim-illuminate')
+call jetpack#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+call jetpack#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+call jetpack#add('tpope/vim-fugitive')
+call jetpack#add('prabirshrestha/async.vim')
+call jetpack#add('prabirshrestha/vim-lsp')
+call jetpack#add('prabirshrestha/asyncomplete.vim')
+call jetpack#add('prabirshrestha/asyncomplete-lsp.vim')
+call jetpack#add('prabirshrestha/asyncomplete-neosnippet.vim')
+call jetpack#add('mattn/vim-lsp-settings', {'merged': 0})
+call jetpack#add('evanleck/vim-svelte')
+call jetpack#end()
 
-" Required:
-set runtimepath+=$HOME/.vim/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state($HOME . '/.vim/')
-  call dein#begin($HOME . '/.vim/')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add($HOME . '/.vim/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here like this:
-  call dein#add('Shougo/unite.vim')
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/vimshell.vim')
-  call dein#add('Shougo/vimproc.vim')
-  call dein#add('lambdalisue/fern.vim')
-  call dein#add('lambdalisue/nerdfont.vim')
-  call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
-  call dein#add('tpope/vim-surround')
-  call dein#add('skanehira/preview-markdown.vim')
-  call dein#add('previm/previm')
-  call dein#add('tyru/open-browser.vim')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('fatih/vim-go')
-  call dein#add('nathanaelkane/vim-indent-guides')
-  call dein#add('tyru/caw.vim')
-  call dein#add('tomasr/molokai')
-  call dein#add('thinca/vim-quickrun')
-  call dein#add('dhruvasagar/vim-table-mode')
-  call dein#add('simeji/winresizer')
-  call dein#add('cohama/lexima.vim')
-  call dein#add('easymotion/vim-easymotion')
-  call dein#add('RRethy/vim-illuminate')
-  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
-  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('prabirshrestha/async.vim')
-  call dein#add('prabirshrestha/vim-lsp')
-  call dein#add('prabirshrestha/asyncomplete.vim')
-  call dein#add('prabirshrestha/asyncomplete-lsp.vim')
-  call dein#add('prabirshrestha/asyncomplete-neosnippet.vim')
-  call dein#add('mattn/vim-lsp-settings', {'merged': 0})
-  call dein#add('evanleck/vim-svelte')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
 "}}}
 
 "---------------------------------------------------------------------------

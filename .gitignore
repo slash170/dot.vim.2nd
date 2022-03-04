@@ -1,11 +1,2 @@
-/rollbacks/*
-/temp/*
-/.dein/*
-/.cache/*
-/repos/*
-merged
-cache_vim
-state_vim.vim
-cache_gvim
-state_gvim.vim
-installer.sh
+autoload/jetpack.vim
+pack
