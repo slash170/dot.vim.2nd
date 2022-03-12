@@ -116,8 +116,8 @@ call jetpack#end()
 "---------------------------------------------------------------------------
 " Fern:"{{{
 "
-noremap <C-e> :<C-u>Fern . -drawer -toggle -keep<CR>
-inoremap <C-e> <ESC>:<C-u>Fern . -drawer -toggle -keep<CR>
+noremap <C-e> :<C-u>Fern . -drawer -toggle -keep -reveal=%<CR>
+inoremap <C-e> <ESC>:<C-u>Fern . -drawer -toggle -keep -reveal=%<CR>
 
 let g:fern#renderer = "nerdfont"
 "}}}
