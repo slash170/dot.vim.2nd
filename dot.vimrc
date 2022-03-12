@@ -80,8 +80,10 @@ call jetpack#begin()
 call jetpack#add('Shougo/neosnippet.vim')
 call jetpack#add('Shougo/neosnippet-snippets')
 call jetpack#add('lambdalisue/fern.vim')
+call jetpack#add('lambdalisue/fern-git-status.vim')
 call jetpack#add('lambdalisue/nerdfont.vim')
 call jetpack#add('lambdalisue/fern-renderer-nerdfont.vim')
+call jetpack#add('lambdalisue/glyph-palette.vim')
 call jetpack#add('tpope/vim-surround')
 call jetpack#add('skanehira/preview-markdown.vim')
 call jetpack#add('previm/previm')
@@ -118,6 +120,16 @@ noremap <C-e> :<C-u>Fern . -drawer -toggle -keep<CR>
 inoremap <C-e> <ESC>:<C-u>Fern . -drawer -toggle -keep<CR>
 
 let g:fern#renderer = "nerdfont"
+"}}}
+
+"---------------------------------------------------------------------------
+" Glyph-Palette:"{{{
+"
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
 "}}}
 
 "---------------------------------------------------------------------------
