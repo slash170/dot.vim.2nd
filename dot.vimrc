@@ -133,73 +133,18 @@ endif
 "---------------------------------------------------------------------------
 " LightLine:"{{{
 "
-if has("mac")
-    let g:lightline = {
-          \ 'colorscheme': 'wombat',
-          \ 'active': {
-          \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'fugitive', 'readonly', 'filename', 'modified' ],
-          \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
-          \ },
-          \ 'component_function': {
-          \   'fugitive': 'LightlineFugitive',
-          \   'readonly': 'LightlineReadonly',
-          \   'modified': 'LightlineModified',
-          \   'filename': 'LightlineFilename'
-          \ },
-          \ 'separator': { 'left': '⮀', 'right': '⮂' },
-          \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-          \ }
-    
-    function! LightlineModified()
-      if &filetype == "help"
-        return ""
-      elseif &modified
-        return "+"
-      elseif &modifiable
-        return ""
-      else
-        return ""
-      endif
-    endfunction
-    
-    function! LightlineReadonly()
-      if &filetype == "help"
-        return ""
-      elseif &readonly
-        return "⭤"
-      else
-        return ""
-      endif
-    endfunction
-    
-    function! LightlineFugitive()
-      return exists('*fugitive#head') ? fugitive#head() : ''
-    endfunction
-    
-    function! LightlineFilename()
-      return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-           \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-           \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-    endfunction
-
-elseif has("unix")
-    let g:lightline = {
-          \ 'colorscheme': 'wombat',
-          \ 'active': {
-          \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'fugitive', 'readonly', 'filename', 'modified' ],
-          \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
-          \ },
-          \ 'component_function': {
-          \   'fugitive': 'LightlineFugitive'
-          \ },
-          \ }
-
-    function! LightlineFugitive()
-      return exists('*fugitive#head') ? fugitive#head() : ''
-    endfunction
-endif
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': ' ' },
+      \ 'subseparator': { 'left': '⮁', 'right': ' ' }
+      \ }
 
 if !has('gui_running')
     set t_Co=256
