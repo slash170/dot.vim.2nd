@@ -162,8 +162,8 @@ augroup END
 "
 if has('conceal')
     set conceallevel=2 concealcursor=niv
-    autocmd ReloadVimrc FileType json setl conceallevel=0 
-    autocmd ReloadVimrc FileType markdown setl conceallevel=0 
+    autocmd ReloadVimrc FileType json setl conceallevel=0
+    autocmd ReloadVimrc FileType markdown setl conceallevel=0
 endif
 "}}}
 
@@ -199,7 +199,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
-let g:go_def_mapping_enabled = 0  " for Language Server config 
+let g:go_def_mapping_enabled = 0  " for Language Server config
 "}}}
 
 "---------------------------------------------------------------------------
