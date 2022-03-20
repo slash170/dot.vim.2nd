@@ -39,8 +39,31 @@ endif
 filetype plugin indent on
 syntax enable
 
-colorscheme molokai
-highlight search cterm=NONE ctermfg=grey ctermbg=blue
+"" color settings
+" https://vim-jp.org/vimdoc-ja/syntax.html#cterm-colors
+"                                              cterm-colors
+" NR-16   NR-8    COLOR NAME
+" 0       0       Black
+" 1       4       DarkBlue
+" 2       2       DarkGreen
+" 3       6       DarkCyan
+" 4       1       DarkRed
+" 5       5       DarkMagenta
+" 6       3       Brown, DarkYellow
+" 7       7       LightGray, LightGrey, Gray, Grey
+" 8       0*      DarkGray, DarkGrey
+" 9       4*      Blue, LightBlue
+" 10      2*      Green, LightGreen
+" 11      6*      Cyan, LightCyan
+" 12      1*      Red, LightRed
+" 13      5*      Magenta, LightMagenta
+" 14      3*      Yellow, LightYellow
+" 15      7*      White
+
+" colorscheme molokai
+colorscheme iceberg
+set background=dark
+highlight search cterm=NONE ctermfg=Black ctermbg=DarkCyan
 
 " cursor move for command-line-mode
 cnoremap <C-a> <Home>
@@ -93,6 +116,7 @@ call jetpack#add('fatih/vim-go')
 call jetpack#add('nathanaelkane/vim-indent-guides')
 call jetpack#add('tyru/caw.vim')
 call jetpack#add('tomasr/molokai')
+call jetpack#add('cocopon/iceberg.vim')
 call jetpack#add('thinca/vim-quickrun')
 call jetpack#add('dhruvasagar/vim-table-mode')
 call jetpack#add('simeji/winresizer')
@@ -257,7 +281,7 @@ map <Leader>k <Plug>(easymotion-k)
 " Illuminate:"{{{
 "
 let g:Illuminate_delay = 250
-highlight illuminatedWord cterm=NONE ctermfg=grey ctermbg=55
+highlight illuminatedWord cterm=NONE ctermfg=Black ctermbg=DarkCyan
 "}}}
 
 "---------------------------------------------------------------------------
