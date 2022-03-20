@@ -159,6 +159,20 @@ augroup END
 "}}}
 
 "---------------------------------------------------------------------------
+" Gina:"{{{
+"
+" alias setting
+call gina#custom#command#alias('status', 'st')
+call gina#custom#command#alias('patch',  'pp')
+call gina#custom#command#alias('commit', 'ci')
+
+" option setting
+call gina#custom#command#option('commit','-v|--verbose')
+call gina#custom#command#option('ci',    '-v|--verbose')
+call gina#custom#command#option('log',   '--opener', 'vsplit')
+"}}}
+
+"---------------------------------------------------------------------------
 " For Conceal:"{{{
 "
 if has('conceal')
