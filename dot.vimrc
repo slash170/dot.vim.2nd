@@ -302,6 +302,8 @@ noremap <Leader><C-g><C-l> :<C-u>GFiles<CR>
 noremap <Leader><C-g><C-c> :<C-u>Commits<CR>
 noremap <Leader><C-a>      :<C-u>History<CR>
 
+let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 }}
+
 " - Command for git grep:{{{
 " fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -bang -nargs=* GGrep
