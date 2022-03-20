@@ -123,6 +123,7 @@ call jetpack#add('simeji/winresizer')
 call jetpack#add('cohama/lexima.vim')
 call jetpack#add('easymotion/vim-easymotion')
 call jetpack#add('RRethy/vim-illuminate')
+call jetpack#add('csexton/trailertrash.vim')
 call jetpack#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call jetpack#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call jetpack#add('tpope/vim-fugitive')
@@ -282,6 +283,12 @@ map <Leader>k <Plug>(easymotion-k)
 "
 let g:Illuminate_delay = 250
 highlight illuminatedWord cterm=NONE ctermfg=Black ctermbg=DarkCyan
+"}}}
+
+"---------------------------------------------------------------------------
+" TrailerTrash:"{{{
+"
+hi UnwantedTrailerTrash guibg=DarkMagenta ctermbg=DarkMagenta
 "}}}
 
 "---------------------------------------------------------------------------
