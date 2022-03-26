@@ -195,8 +195,8 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
-      \ 'separator': { 'left': '', 'right': ' ' },
-      \ 'subseparator': { 'left': '', 'right': ' ' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 if !has('gui_running')
