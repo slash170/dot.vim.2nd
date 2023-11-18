@@ -147,6 +147,8 @@ noremap <C-e> :<C-u>Fern . -drawer -toggle -keep -reveal=%<CR>
 inoremap <C-e> <ESC>:<C-u>Fern . -drawer -toggle -keep -reveal=%<CR>
 
 let g:fern#renderer = "nerdfont"
+
+let g:fern_disable_startup_warnings = 1
 "}}}
 
 "---------------------------------------------------------------------------
